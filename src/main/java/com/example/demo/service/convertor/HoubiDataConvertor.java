@@ -1,14 +1,14 @@
-package com.example.demo.service;
+package com.example.demo.service.convertor;
 
 import com.example.demo.model.CombinedPrice;
-import com.example.demo.model.HuobiResponse;
+import com.example.demo.model.response.HuobiResponse;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.Objects;
 
 @Service
-public class HoubiDataConvertor implements Convertor<HuobiResponse, CombinedPrice>{
+public class HoubiDataConvertor implements Convertor<HuobiResponse, CombinedPrice> {
 
     @Override
     public CombinedPrice transform(HuobiResponse input) throws IllegalArgumentException {

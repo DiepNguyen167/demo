@@ -1,4 +1,4 @@
-package com.example.demo.service;
+package com.example.demo.service.convertor;
 
 import com.example.demo.model.BestPricing;
 import com.example.demo.model.CombinedPrice;
@@ -25,8 +25,8 @@ public class EntityConvertor implements Convertor<CombinedPrice, BestPricing> {
                 .tradePairId(record.getId())
                 .bidPrice(input.getBidPrice())
                 .askPrice(input.getAskPrice())
-                .bidPrice(input.getBidQuantity())
-                .askPrice(input.getAskQuantity())
+                .bidQuantity(input.getBidQuantity())
+                .askQuantity(input.getAskQuantity())
                 .build();
     }
 

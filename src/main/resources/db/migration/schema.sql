@@ -39,6 +39,8 @@ CREATE TABLE BEST_PRICING (
                               id BIGINT AUTO_INCREMENT PRIMARY KEY,
                               trade_pair_id BIGINT NOT NULL,
                               bid_price DECIMAL(18,8) NOT NULL,
+                              bid_quantity DECIMAL(18,8) NOT NULL,
                               ask_price DECIMAL(18,8) NOT NULL,
+                              ask_quantity DECIMAL(18,8) NOT NULL,
                               timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
