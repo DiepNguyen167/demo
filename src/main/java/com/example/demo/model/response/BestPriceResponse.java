@@ -13,8 +13,6 @@ import java.time.LocalDateTime;
 public class BestPriceResponse {
     private String symbol;
     private BigDecimal bidPrice;
-    private BigDecimal bidQuantity;
     private BigDecimal askPrice;
-    private BigDecimal askQuantity;
     private LocalDateTime createdAt;
 }
