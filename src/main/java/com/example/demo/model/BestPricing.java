@@ -30,8 +30,14 @@ public class BestPricing {
     @Column(name = "bid_price", nullable = false, precision = 18, scale = 8)
     private BigDecimal bidPrice;
 
+    @Column(name = "bid_quantity", nullable = false, precision = 18, scale = 8)
+    private BigDecimal bidQuantity;
+
     @Column(name = "ask_price", nullable = false, precision = 18, scale = 8)
     private BigDecimal askPrice;
+
+    @Column(name = "ask_quantity", nullable = false, precision = 18, scale = 8)
+    private BigDecimal askQuantity;
 
     @Column(name = "timestamp", nullable = false)
     @Builder.Default

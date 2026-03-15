@@ -1,15 +1,14 @@
-package com.example.demo.service;
+package com.example.demo.service.convertor;
 
-import java.math.BigDecimal;
 import java.util.Objects;
 
-import com.example.demo.model.BinanceResponse;
+import com.example.demo.model.response.BinanceResponse;
 import com.example.demo.model.CombinedPrice;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
 @Service
-public class BinanceDataConvertor implements Convertor<BinanceResponse, CombinedPrice>{
+public class BinanceDataConvertor implements Convertor<BinanceResponse, CombinedPrice> {
 
     @Override
     public CombinedPrice transform(BinanceResponse input) throws IllegalArgumentException {

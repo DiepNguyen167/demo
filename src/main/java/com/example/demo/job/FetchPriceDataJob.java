@@ -2,7 +2,7 @@ package com.example.demo.job;
 
 import com.example.demo.model.CombinedPrice;
 import com.example.demo.repository.BestPricingRepository;
-import com.example.demo.service.EntityConvertor;
+import com.example.demo.service.convertor.EntityConvertor;
 import com.example.demo.service.FetchBinanceDataService;
 import com.example.demo.service.FetchHoubiDataService;
 import lombok.RequiredArgsConstructor;

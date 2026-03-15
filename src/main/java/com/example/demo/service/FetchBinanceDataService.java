@@ -1,7 +1,8 @@
 package com.example.demo.service;
 
-import com.example.demo.model.BinanceResponse;
+import com.example.demo.model.response.BinanceResponse;
 import com.example.demo.model.CombinedPrice;
+import com.example.demo.service.convertor.BinanceDataConvertor;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;

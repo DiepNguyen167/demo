@@ -1,7 +1,8 @@
 package com.example.demo.service;
 
 import com.example.demo.model.CombinedPrice;
-import com.example.demo.model.HuobiResponse;
+import com.example.demo.model.HuobiWarpper;
+import com.example.demo.service.convertor.HoubiDataConvertor;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
