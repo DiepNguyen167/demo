@@ -17,13 +17,28 @@ public class BestPriceService {
     private final BestPricingRepository bestPricingRepository;
     private final BestPriceResponseConvertor bestPriceResponseConvertor;
 
-    public List<BestPriceResponse> getBestPrices(String symbol) {
+    public BestPriceResponse getBestPrices(String symbol) {
         var bestPrices = bestPricingRepository.findBestBidAskBySymbolAtLatestTimestamp(symbol);
-
-        return bestPrices.stream()
-                .map(bestPriceResponseConvertor::transform)
+        if(bestPrices.isEmpty()){
+            return BestPriceResponse.builder().build();
+        }
+        var highestBid = bestPrices.stream()
                 .filter(Objects::nonNull)
-                .toList();
+                .max((bp1, bp2) -> bp1.getBidPrice().compareTo(bp2.getBidPrice()))
+                .orElse(null);
+
+        var lowestAsk = bestPrices.stream()
+                .filter(Objects::nonNull)
+                .min((bp1, bp2) -> bp1.getAskPrice().compareTo(bp2.getAskPrice()))
+                .orElse(null);
+
+
+        return BestPriceResponse.builder()
+                .symbol(symbol)
+                .bidPrice(highestBid != null ? highestBid.getBidPrice() : null)
+                .askPrice(lowestAsk != null ? lowestAsk.getAskPrice() : null)
+                .createdAt(bestPrices.get(0).getTimestamp())
+                .build();
     }
 
 }
