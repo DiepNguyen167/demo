@@ -23,8 +23,6 @@ public class BestPriceResponseConvertor implements Convertor<BestPricing, BestPr
                 .symbol(tradePair.getBaseCurrency() + tradePair.getQuoteCurrency())
                 .bidPrice(input.getBidPrice())
                 .askPrice(input.getAskPrice())
-                .bidQuantity(input.getBidQuantity())
-                .askQuantity(input.getAskQuantity())
                 .createdAt(input.getTimestamp())
                 .build();
     }

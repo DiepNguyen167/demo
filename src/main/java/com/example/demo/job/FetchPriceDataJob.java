@@ -10,6 +10,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -32,11 +33,12 @@ public class FetchPriceDataJob {
             combinedPrices.addAll(binanceData);
             combinedPrices.addAll(houbiData);
 
-                // Log the combined price data
-//            log.info("Combined Price Data: {}", combinedPrices);
             var entites = combinedPrices.stream()
                     .map(entityConvertor::transform)
                     .filter(Objects::nonNull).toList();
+
+            var timeStamp = LocalDateTime.now();
+            entites.forEach(e -> e.setTimestamp(timeStamp));
              log.info("Transformed Entities: {}", entites);
             bestPricingRepository.saveAll(entites);
         } catch (Exception e) {

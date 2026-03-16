@@ -15,7 +15,7 @@ public interface BestPricingRepository extends JpaRepository<BestPricing, Long> 
             "(SELECT tp.id FROM TRADE_PAIR tp " +
             "WHERE concat(tp.base_currency, tp.quote_currency) = :symbol) " +
             "ORDER BY bp.timestamp DESC", nativeQuery = true)
-    List<BestPricing> findBySymbolOrderByTimestampDesc(String symbol);
+    List<BestPricing> findBestBidAskBySymbolAtLatestTimestamp(String symbol);
 
     @Query(value = """
             SELECT * FROM BEST_PRICING bp

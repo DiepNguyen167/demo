@@ -40,6 +40,5 @@ public class BestPricing {
     private BigDecimal askQuantity;
 
     @Column(name = "timestamp", nullable = false)
-    @Builder.Default
-    private LocalDateTime timestamp = LocalDateTime.now();
+    private LocalDateTime timestamp;
 }

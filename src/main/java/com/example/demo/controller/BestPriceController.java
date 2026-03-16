@@ -20,7 +20,7 @@ private final BestPriceService bestPriceService;
 
 
     @GetMapping(value = "{symbol}")
-    public List<BestPriceResponse> getBestPrices(@PathVariable String symbol) {
-        return bestPriceService.getBestPrices(symbol); //sort be timestamp desc
+    public BestPriceResponse getBestPrices(@PathVariable String symbol) {
+        return bestPriceService.getBestPrices(symbol);
     }
 }
