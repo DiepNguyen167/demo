@@ -6,8 +6,6 @@ import com.example.demo.service.convertor.BestPriceResponseConvertor;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 import java.util.Objects;
 
 @Service
@@ -20,7 +18,7 @@ public class BestPriceService {
     public BestPriceResponse getBestPrices(String symbol) {
         var bestPrices = bestPricingRepository.findBestBidAskBySymbolAtLatestTimestamp(symbol);
         if(bestPrices.isEmpty()){
-            return BestPriceResponse.builder().build();
+            return null;
         }
         var highestBid = bestPrices.stream()
                 .filter(Objects::nonNull)

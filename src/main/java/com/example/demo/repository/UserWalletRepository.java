@@ -11,13 +11,11 @@ import java.util.Optional;
 @Repository
 public interface UserWalletRepository extends JpaRepository<UserWallet, Long> {
 
-    Optional<UserWallet> findUserWalletByUserInfoId(long userInfoId);
-
     @Query(value = """
             SELECT * FROM USER_WALLET uw
             WHERE uw.user_info_id = :userInfoId
-            AND uw.currency = :baseCurrency)
-""", nativeQuery = true)
+            AND uw.currency = :baseCurrency
+    """, nativeQuery = true)
     UserWallet findByUserInfoIdAndCurrency(long userInfoId, String baseCurrency);
 
     @Query(value = """

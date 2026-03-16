@@ -13,8 +13,6 @@ public class TradeTransactionRequest {
     private long tracePairId;
     @NotNull
     @DecimalMin(value = "0.000000000", message = "Amount must be greater than 0")
-    private BigDecimal amount;
-    @DecimalMin(value = "0.000000000", message = "Amount must be greater than 0")
     private BigDecimal quantity;
     private TradeType tradeType;
 }
