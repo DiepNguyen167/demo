@@ -7,17 +7,17 @@ This is a demo of a trading system that uses machine learning to predict stock p
 
 ### Retrieve Best prices
 ```
-GET /api/best-price/{symbol}
+GET /api/v1/best-prices/{symbol}
 ```
 
 ### Retrieve user's wallet
 ```
-GET /api/user-wallet/{user_id}
+GET /api/v1/user-wallets/{user_id}
 ```
 
 ### Place a Trade
 ```
-POST /api/trade-transaction
+POST /api/v1/trade-transactions/
 {
     "userInfoId": 123,
     "tracePairId": 3,
@@ -27,7 +27,7 @@ POST /api/trade-transaction
 ```
 ### Retrieve trade transactions
 ```
-GET /api/trade-transaction/{user_id}
+GET /api/v1/trade-transactions/{user_id}
 ```
 
 
