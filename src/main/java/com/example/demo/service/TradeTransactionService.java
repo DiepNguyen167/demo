@@ -55,37 +55,38 @@ public class TradeTransactionService {
         tradeTransaction.setStatus("EXECUTED");
 
         switch (tradeTransactionRequest.getTradeType()) {
-            case BID -> { // Buy
+            case ASK -> {
                 BigDecimal totalCost = price.multiply(tradeTransactionRequest.getQuantity());
                 if (baseWallet == null)
                     throw new IllegalArgumentException("Base wallet not found for user: " + tradeTransactionRequest.getUserInfoId());
-                validateAmount(baseWallet, totalCost);
-                baseWallet.setBalance(baseWallet.getBalance().subtract(totalCost));
+                validateAmount(baseWallet, tradeTransactionRequest.getQuantity());
+                baseWallet.setBalance(baseWallet.getBalance().subtract(tradeTransactionRequest.getQuantity()));
                 if (quoteWallet == null) {
                     quoteWallet = new UserWallet();
                     quoteWallet.setUserInfoId(tradeTransactionRequest.getUserInfoId());
                     quoteWallet.setCurrency(tradePair.getQuoteCurrency());
-                    quoteWallet.setBalance(tradeTransactionRequest.getQuantity());
+                    quoteWallet.setBalance(totalCost);
                 } else {
-                    quoteWallet.setBalance(quoteWallet.getBalance().add(tradeTransactionRequest.getQuantity()));
+                    quoteWallet.setBalance(quoteWallet.getBalance().add(totalCost));
                 }
                 userWalletRepository.save(baseWallet);
                 userWalletRepository.save(quoteWallet);
             }
-            case ASK -> { // Sell
+            case BID -> {
                 BigDecimal totalQuantity = tradeTransactionRequest.getQuantity();
                 if (quoteWallet == null)
                     throw new IllegalArgumentException("Quote wallet not found for user: " + tradeTransactionRequest.getUserInfoId());
                 validateAmount(quoteWallet, totalQuantity);
-                quoteWallet.setBalance(quoteWallet.getBalance().subtract(totalQuantity));
                 BigDecimal baseAmount = price.multiply(totalQuantity);
+                quoteWallet.setBalance(quoteWallet.getBalance().subtract(baseAmount));
+
                 if (baseWallet == null) {
                     baseWallet = new UserWallet();
                     baseWallet.setUserInfoId(tradeTransactionRequest.getUserInfoId());
                     baseWallet.setCurrency(tradePair.getBaseCurrency());
-                    baseWallet.setBalance(baseAmount);
+                    baseWallet.setBalance(totalQuantity);
                 } else {
-                    baseWallet.setBalance(baseWallet.getBalance().add(baseAmount));
+                    baseWallet.setBalance(baseWallet.getBalance().add(totalQuantity));
                 }
                 userWalletRepository.save(baseWallet);
                 userWalletRepository.save(quoteWallet);
@@ -104,8 +105,8 @@ public class TradeTransactionService {
 
     private static BigDecimal getPrice(TradeTransactionRequest input, BigDecimal bidPrice, BigDecimal askPrice) {
         return switch (input.getTradeType()) {
-            case BID -> bidPrice;
-            case ASK -> askPrice;
+            case ASK -> bidPrice;
+            case BID -> askPrice;
         };
     }
 }

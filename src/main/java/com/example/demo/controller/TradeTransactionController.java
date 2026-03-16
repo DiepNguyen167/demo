@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/trade-transaction/")
+@RequestMapping("/v1/trade-transactions/")
 @RequiredArgsConstructor
 @Slf4j
 public class TradeTransactionController {

@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/best-price/")
+@RequestMapping("/v1/best-prices/")
 @RequiredArgsConstructor
 @Slf4j
 public class BestPriceController {
