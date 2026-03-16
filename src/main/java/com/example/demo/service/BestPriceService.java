@@ -19,6 +19,7 @@ public class BestPriceService {
 
     public List<BestPriceResponse> getBestPrices(String symbol) {
         var bestPrices = bestPricingRepository.findBestBidAskBySymbolAtLatestTimestamp(symbol);
+
         return bestPrices.stream()
                 .map(bestPriceResponseConvertor::transform)
                 .filter(Objects::nonNull)

@@ -6,7 +6,7 @@ import com.example.demo.model.request.TradeTransactionRequest;
 import com.example.demo.model.response.TradeTransactionResponse;
 import com.example.demo.repository.BestPricingRepository;
 import com.example.demo.repository.TradePairRepository;
-import com.example.demo.repository.TradeTransactionResponsitory;
+import com.example.demo.repository.TradeTransactionRepository;
 import com.example.demo.repository.UserWalletRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -21,7 +21,7 @@ import java.math.BigDecimal;
 public class TradeTransactionService {
     private final UserWalletRepository userWalletRepository;
     private final BestPricingRepository bestPricingRepository;
-    private final TradeTransactionResponsitory tradeTransactionResponsitory;
+    private final TradeTransactionRepository tradeTransactionRepository;
     private final TradePairRepository tradePairRepository;
 
     @Transactional
@@ -65,7 +65,7 @@ public class TradeTransactionService {
             default -> throw new IllegalArgumentException("Invalid trade type: " + tradeTransactionRequest.getTradeType());
         }
 
-        tradeTransactionResponsitory.save(tradeTransaction);
+        tradeTransactionRepository.save(tradeTransaction);
         return new TradeTransactionResponse(tradeTransaction.getId(), "Trade executed successfully");
 
     }
