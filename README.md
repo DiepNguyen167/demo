@@ -29,11 +29,3 @@ POST /api/v1/trade-transactions/
 ```
 GET /api/v1/trade-transactions/{user_id}
 ```
-
-
-BEST_ASK: 2000
-BEST_BID: 1500
-
-
-USER BID - 
-USER ASK - 
